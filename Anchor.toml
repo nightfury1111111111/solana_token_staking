@@ -1,12 +1,27 @@
+[features]
+seeds = false
+skip-lint = false
 [programs.localnet]
-anchor_escrow = "2gSyVrvohTuae4WQZcrVUdV5vhfxWmbGkPjYJjiZx6rX"
+spl_token_staking = "E1iKYDRxm1reD3CaJpaCxWG26QNvd2FWdG7p8HoxQCxt"
 
 [registry]
-url ="http://127.0.0.1:8899"
+url = "https://api.apr.dev"
 
 [provider]
-cluster = "https://holy-autumn-daylight.solana-devnet.quiknode.pro/f79aa971b5e5d9b72f0e1b55109dabed8d0b98a8/"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
+[test.validator]
+url = "https://api.mainnet-beta.solana.com"
+
+[[test.validator.clone]] # Metaplex Token Metadata program
+address = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+
+
 [scripts]
-test = "yarn run ts-mocha -t 1000000 tests/**/*.ts"
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts -r tests/hooks.ts"
+# test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/initialize-stake-pool.ts -r tests/hooks.ts"
+# test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/add-reward-pool.ts -r tests/hooks.ts"
+# test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/deposit.ts -r tests/hooks.ts"
+# test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/claim-all.ts -r tests/hooks.ts"
+# test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/withdraw.ts -r tests/hooks.ts"
